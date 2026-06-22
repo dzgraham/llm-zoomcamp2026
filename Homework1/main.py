@@ -82,7 +82,6 @@ print(f"Q5 Token reduction: {reduction:.1f}x fewer tokens")
 
 #Q6. Turning it into an agent
 def search_tool(query: str, top_k: int = 3) -> str:
-    """Search the course lessons for information relevant to the query."""
     results = chunk_index.search(query, num_results=top_k)
     
     if not results:
@@ -95,10 +94,7 @@ def search_tool(query: str, top_k: int = 3) -> str:
     return "\n\n".join(context)
 
 def agent_loop(question, max_iterations=5):
-    """
-    Manual agent loop that can call the search tool multiple times.
-    Returns the final answer and the number of tool calls.
-    """
+    
     tool_call_count = 0
     messages = [
         {"role": "system", "content": """You're a course teaching assistant. Answer the student's question using the search tool. 
